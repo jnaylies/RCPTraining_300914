@@ -16,6 +16,13 @@
             name="Rental Property"
             restorable="true">
       </view>
+      <view
+            category="com.sogeti.rental.ui.category"
+            class="com.sogeti.rental.ui.views.RentalAgencyView"
+            id="com.sogeti.rental.ui.rentalAgencyView"
+            name="Rental Agencies"
+            restorable="true">
+      </view>
    </extension>
 
 </plugin>
