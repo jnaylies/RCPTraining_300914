@@ -1,17 +1,25 @@
 package com.sogeti.rental.ui.views;
 
 import java.awt.Label;
+import java.beans.Customizer;
 import java.util.Collection;
 
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 import com.opcoach.training.rental.Customer;
+import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
+import com.sogeti.rental.ui.RentalUIActivator;
 
-public class RentalProvider extends LabelProvider implements ITreeContentProvider, RentalUICstes {
+public class RentalProvider extends LabelProvider implements ITreeContentProvider, RentalUICstes, IColorProvider {
 	
 	public class Node {
 		private String label;
@@ -41,11 +49,11 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 		
 		Object[] getChildren() {
-			if (label == CUSTOMER)
+			if (label.equals(CUSTOMER))
 				return a.getCustomers().toArray();
-			else if (label == LOCATIONS)
+			else if (label.equals(LOCATIONS))
 				return a.getRentals().toArray();
-			else if (label == OBJETS_LOUES)
+			else if (label.equals(OBJETS_LOUES))
 				return a.getObjectsToRent().toArray();
 			return null;
 		}
@@ -104,4 +112,40 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 		return super.getText(element);
 	}
+
+	@Override
+	public Color getForeground(Object element) {
+		if (element instanceof Customer)
+			return Display.getCurrent().getSystemColor(SWT.COLOR_BLUE);
+		else if (element instanceof RentalObject)
+			return Display.getCurrent().getSystemColor(SWT.COLOR_GREEN);
+		else if (element instanceof Rental)
+			return Display.getCurrent().getSystemColor(SWT.COLOR_RED);
+		else if (element instanceof Node)
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_MAGENTA);
+		return null;
+	}
+	
+	@Override
+	public Image getImage(Object element) {
+		if (element instanceof Node) {
+			Node n = (Node) element;
+			if (n.getLabel().equals(CUSTOMER))
+				return RentalUIActivator.getDefault().getImageRegistry().get(ICON_CUSTOMER);
+			if (n.getLabel().equals(LOCATIONS))
+				return RentalUIActivator.getDefault().getImageRegistry().get(ICON_RENTALS);
+			if (n.getLabel().equals(OBJETS_LOUES))
+				return RentalUIActivator.getDefault().getImageRegistry().get(ICON_RENTAL_OBJECTS);
+			return null;
+		} else if (element instanceof RentalAgency)
+			return RentalUIActivator.getDefault().getImageRegistry().get(ICON_AGENCY);
+		return null;
+	}
+
+	@Override
+	public Color getBackground(Object element) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
