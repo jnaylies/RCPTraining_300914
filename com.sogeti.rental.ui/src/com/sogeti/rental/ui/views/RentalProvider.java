@@ -1,7 +1,5 @@
 package com.sogeti.rental.ui.views;
 
-import java.awt.Label;
-import java.beans.Customizer;
 import java.util.Collection;
 
 import org.eclipse.jface.viewers.IColorProvider;

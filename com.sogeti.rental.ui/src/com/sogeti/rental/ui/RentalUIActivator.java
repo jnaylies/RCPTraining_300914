@@ -6,8 +6,6 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
-import org.osgi.framework.launch.Framework;
-
 import com.sogeti.rental.ui.views.RentalUICstes;
 
 /**

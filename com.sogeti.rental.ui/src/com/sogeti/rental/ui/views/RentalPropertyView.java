@@ -23,8 +23,6 @@ import org.eclipse.ui.part.ViewPart;
 import com.opcoach.training.rental.Rental;
 import com.sogeti.rental.core.RentalCoreActivator;
 
-import org.eclipse.swt.widgets.Text;
-
 public class RentalPropertyView extends ViewPart implements ISelectionListener {
 
 	private Label rentedObjectLabel;
