@@ -23,6 +23,13 @@
             name="Rental Agencies"
             restorable="true">
       </view>
+      <view
+            category="com.sogeti.rental.ui.category"
+            class="com.sogeti.rental.ui.views.RentalCustomerView"
+            id="com.sogeti.rental.ui.rentalCustomerView"
+            name="Rental Customer"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">

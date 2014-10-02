@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Adapters
+Bundle-SymbolicName: com.sogeti.rental.adapters;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sogeti.rental.adapters.RentalAdapterActivator
+Bundle-Vendor: SOGETI
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.runtime,
+ org.eclipse.core.runtime,
+ com.sogeti.rental.core;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
