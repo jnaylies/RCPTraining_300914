@@ -9,8 +9,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import com.sogeti.rental.ui.RentalUIActivator;
 import com.sogeti.rental.ui.views.RentalUICstes;
 
-public class RentalColorPreferences extends FieldEditorPreferencePage implements
-		IWorkbenchPreferencePage,RentalUICstes {
+public class RentalColorPreferences extends FieldEditorPreferencePage implements IWorkbenchPreferencePage, RentalUICstes {
 
 	public RentalColorPreferences() {
 		super(GRID);

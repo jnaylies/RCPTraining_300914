@@ -1,6 +1,7 @@
 package com.sogeti.rental.ui.views;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.core.internal.content.Activator;
 import org.eclipse.jface.resource.ColorRegistry;
@@ -19,14 +20,15 @@ import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
+import com.sogeti.rental.ui.Palette;
 import com.sogeti.rental.ui.RentalUIActivator;
 
 public class RentalProvider extends LabelProvider implements ITreeContentProvider, RentalUICstes, IColorProvider {
-	
+
 	public class Node {
 		private String label;
 		private RentalAgency a;
-		
+
 		public Node(String label, RentalAgency a) {
 			super();
 			this.label = label;
@@ -49,7 +51,6 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 			this.a = a;
 		}
 
-		
 		Object[] getChildren() {
 			if (label.equals(CUSTOMER))
 				return a.getCustomers().toArray();
@@ -59,6 +60,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 				return a.getObjectsToRent().toArray();
 			return null;
 		}
+
 		@Override
 		public String toString() {
 			return label;
@@ -101,15 +103,15 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		private RentalProvider getOuterType() {
 			return RentalProvider.this;
 		}
-		
+
 	}
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
 	public Object[] getElements(Object inputElement) {
 		// TODO Auto-generated method stub
@@ -122,7 +124,7 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof RentalAgency) {
 			RentalAgency a = (RentalAgency) parentElement;
-			return new Node[] {new Node(CUSTOMER,a), new Node(LOCATIONS,a), new Node(OBJETS_LOUES,a)};
+			return new Node[] { new Node(CUSTOMER, a), new Node(LOCATIONS, a), new Node(OBJETS_LOUES, a) };
 		} else if (parentElement instanceof Node) {
 			Node n = (Node) parentElement;
 			return n.getChildren();
@@ -140,12 +142,12 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	public boolean hasChildren(Object element) {
 		return true;
 	}
-	
+
 	@Override
 	public String getText(Object element) {
-		if(element instanceof RentalAgency)
+		if (element instanceof RentalAgency)
 			return ((RentalAgency) element).getName();
-		else if(element instanceof Customer)
+		else if (element instanceof Customer)
 			return ((Customer) element).getDisplayName();
 		else if (element instanceof RentalObject)
 			return ((RentalObject) element).getName();
@@ -155,17 +157,20 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getForeground(Object element) {
-		if (element instanceof Customer)
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_CUSTOMER_COLOR));
-		else if (element instanceof RentalObject)
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_OBJECTS_COLOR));
-		else if (element instanceof Rental)
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_RENTAL_COLOR));
-		else if (element instanceof Node)
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_MAGENTA);
-		return null;
+		
+		return getCp().getForeground(element);
+
 	}
-	
+
+	private IColorProvider getCp() {
+		// Recuperation de l'id de la palette de preference
+		String palette_id = RentalUIActivator.getDefault().getPreferenceStore().getString(PREF_PALETTE);
+
+		// Recuperation de la palette
+		Map<String, Palette> paletteManager = RentalUIActivator.getDefault().getPaletteManager();
+		return paletteManager.get(palette_id).getCp();
+	}
+
 	@Override
 	public Image getImage(Object element) {
 		if (element instanceof Node) {
@@ -184,22 +189,8 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getBackground(Object element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	private Color getAColor(String rgbKey) {
-		ColorRegistry colorRegistry = JFaceResources.getColorRegistry();
+		return getCp().getBackground(element);
 
-		// Test if a color exists for this key
-		Color col = colorRegistry.get(rgbKey);
-		if (col == null) {
-			// if none, put a RGB for this key
-			colorRegistry.put(rgbKey, StringConverter.asRGB(rgbKey));
-			// Get the created color by the registry
-			col = colorRegistry.get(rgbKey);
-		}
-		return col;
 	}
-	
+
 }

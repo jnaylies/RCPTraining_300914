@@ -17,7 +17,7 @@ import com.opcoach.training.rental.RentalAgency;
 import com.sogeti.rental.core.RentalCoreActivator;
 import com.sogeti.rental.ui.RentalUIActivator;
 
-public class RentalAgencyView extends ViewPart implements IPropertyChangeListener  {
+public class RentalAgencyView extends ViewPart implements IPropertyChangeListener {
 
 	private TreeViewer tv;
 
@@ -34,9 +34,9 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 		Collection<RentalAgency> agencies = new ArrayList<RentalAgency>();
 		agencies.add(RentalCoreActivator.getAgency());
 		tv.setInput(agencies);
-		
+
 		getSite().setSelectionProvider(tv);
-		
+
 		// Autorise le popup sur le treeviewer
 		MenuManager menuManager = new MenuManager();
 		Menu menu = menuManager.createContextMenu(tv.getControl());
@@ -50,13 +50,12 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 
 	}
 
-	
 	@Override
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		RentalUIActivator.getDefault().getPreferenceStore().addPropertyChangeListener(this);
 	}
-	
+
 	@Override
 	public void dispose() {
 		RentalUIActivator.getDefault().getPreferenceStore().removePropertyChangeListener(this);
@@ -65,8 +64,7 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		tv.refresh();		
+		tv.refresh();
 	}
-	
-	
+
 }

@@ -29,7 +29,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 	private Label customerName;
 	private Label dateDebutTexte;
 	private Label dateFinTexte;
-	
+
 	public RentalPropertyView() {
 		// TODO Auto-generated constructor stub
 	}
@@ -37,12 +37,12 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
-		
+
 		Group infoGroup = new Group(parent, SWT.NONE);
 		infoGroup.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		infoGroup.setText("Informations");
 		infoGroup.setLayout(new GridLayout(2, false));
-		
+
 		rentedObjectLabel = new Label(infoGroup, SWT.NONE);
 		GridData gd = new GridData();
 		gd.grabExcessHorizontalSpace = true;
@@ -54,34 +54,34 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		Label customerLabel = new Label(infoGroup, SWT.NONE);
 		customerLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		customerLabel.setText("Lou\u00E9 \u00E0 :");
-		
+
 		customerName = new Label(infoGroup, SWT.NONE);
 		customerName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		customerName.setText("John Wayne");
-		
+
 		Group grpDatesPrvues = new Group(parent, SWT.NONE);
 		grpDatesPrvues.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		grpDatesPrvues.setText("Dates pr\u00E9vues");
 		grpDatesPrvues.setLayout(new GridLayout(3, false));
-		
+
 		Label dateDebutLabel = new Label(grpDatesPrvues, SWT.NONE);
 		dateDebutLabel.setText("du :");
 		new Label(grpDatesPrvues, SWT.NONE);
-		
+
 		dateDebutTexte = new Label(grpDatesPrvues, SWT.NONE);
 		dateDebutTexte.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		dateDebutTexte.setText("15/03/2011");
-		
+
 		Label dateFinLabel = new Label(grpDatesPrvues, SWT.NONE);
 		dateFinLabel.setText("au :");
 		new Label(grpDatesPrvues, SWT.NONE);
-		
+
 		dateFinTexte = new Label(grpDatesPrvues, SWT.NONE);
 		dateFinTexte.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		dateFinTexte.setText("22/03/2011");
-		
+
 		setRental(RentalCoreActivator.getAgency().getRentals().get(0));
-				
+
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public void setRental(Rental r) {
 		rentedObjectLabel.setText(r.getRentedObject().getName());
 		customerName.setText(r.getCustomer().getDisplayName());
@@ -105,28 +105,27 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 				setRental((Rental) selected);
 		}
 	}
-	
+
 	@Override
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		site.getPage().addSelectionListener(this);
 	}
-	
+
 	@Override
 	public void dispose() {
 		getSite().getPage().removeSelectionListener(this);
 		super.dispose();
 	}
-	
+
 	public void setLabelAsDragSource(final Label label) {
 		DragSource source = new DragSource(label, DND.DROP_MOVE | DND.DROP_COPY);
-		
+
 		// Define the transfer type
 		source.setTransfer(new Transfer[] { TextTransfer.getInstance() });
-		
+
 		// Add a drag lister to source
-		source.addDragListener(new DragSourceAdapter()
-		{
+		source.addDragListener(new DragSourceAdapter() {
 			public void dragSetData(DragSourceEvent event) {
 				if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
 					event.data = label.getText();
