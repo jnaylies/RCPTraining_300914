@@ -16,10 +16,10 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="com.sogeti.rental.rcp.application"
-            name="Hello RCP">
+            name="Rental">
          <property
-               name="windowImages"
-               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
+               name="appName"
+               value="Rental">
          </property>
       </product>
    </extension>
