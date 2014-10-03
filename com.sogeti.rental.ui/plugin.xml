@@ -64,7 +64,7 @@
       <command
             defaultHandler="com.sogeti.ui.handlers.SampleHandler"
             id="com.sogeti.rental.ui.helloWorld"
-            name="helloWorld Command">
+            name="Rental Command">
       </command>
    </extension>
    <extension
@@ -79,7 +79,7 @@
             allPopups="false"
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               label="Hello World Menu">
+               label="Rental Menu">
             <command
                   commandId="com.sogeti.rental.ui.helloWorld"
                   style="push">

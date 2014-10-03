@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Rcp
+Bundle-SymbolicName: com.sogeti.rental.rcp;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SOGETI
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.sogeti.rental.adapters;bundle-version="1.0.0",
+ com.sogeti.rental.ui.cmd;bundle-version="1.0.0",
+ com.sogeti.rental.ui;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

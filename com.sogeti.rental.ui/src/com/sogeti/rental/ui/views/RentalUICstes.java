@@ -14,5 +14,5 @@ public interface RentalUICstes {
 	public final String PREF_RENTAL_COLOR = "rental_color";
 	public final String PREF_OBJECTS_COLOR = "obj_color";
 	public final String PREF_PALETTE = "palette_color";
-
+	
 }

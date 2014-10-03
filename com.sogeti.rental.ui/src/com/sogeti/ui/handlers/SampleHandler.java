@@ -26,7 +26,7 @@ public class SampleHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		MessageDialog.openInformation(window.getShell(), "AEffacer", "Hello, Eclipse world");
+		MessageDialog.openInformation(window.getShell(), "Rental", "Hello, Eclipse world");
 		return null;
 	}
 }

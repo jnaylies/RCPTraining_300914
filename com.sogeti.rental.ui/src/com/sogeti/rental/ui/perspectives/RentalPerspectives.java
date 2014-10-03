@@ -3,7 +3,10 @@ package com.sogeti.rental.ui.perspectives;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
 
+
 public class RentalPerspectives implements IPerspectiveFactory {
+
+	public static final String PERSPECTIVE_ID = "com.sogeti.rental.ui.perspectives.RentalPerspectives";
 
 	/**
 	 * Creates the initial layout for a page.
