@@ -1,11 +1,17 @@
 package com.sogeti.rental.ui;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
+
 import com.sogeti.rental.ui.views.RentalUICstes;
 
 /**
@@ -32,6 +38,25 @@ public class RentalUIActivator extends AbstractUIPlugin implements RentalUICstes
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		// RCP - 090
+		readViewExtensions();
+	}
+
+	private void readViewExtensions() {
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IExtensionPoint extensionPoint = reg.getExtensionPoint("org.eclipse.ui.views");
+		
+		for (IExtension extension : extensionPoint.getExtensions()) {
+			for (IConfigurationElement e : extension.getConfigurationElements()) {
+				if (e.getName().equals("view")) {
+					String vue = e.getAttribute("name");
+					String plugin = e.getNamespaceIdentifier();
+					System.out.println("Plugin : "+plugin+"\tVue : "+vue);
+				}
+			}
+		}
+		
 	}
 
 	/*
