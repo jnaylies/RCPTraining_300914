@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Rental" uid="coms.sogeti.rental" id="com.sogeti.rental.rcp.product" application="com.sogeti.rental.rcp.application" version="1.0.0" useFeatures="false" includeLaunchers="true">
+<product name="Rental" uid="com.sogeti.rental" id="com.sogeti.rental.rcp.product" application="com.sogeti.rental.rcp.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
-      <programArgs>-consoleLog -clean
-      </programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
@@ -17,7 +15,7 @@
    <windowImages/>
 
 
-   <launcher>
+   <launcher name="Rental">
       <solaris/>
       <win useIco="false">
          <bmp/>
@@ -26,7 +24,6 @@
 
 
    <vm>
-      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7</windows>
    </vm>
 
 
@@ -34,7 +31,6 @@
       <plugin id="com.ibm.icu.base"/>
       <plugin id="com.sogeti.rental.adapters"/>
       <plugin id="com.sogeti.rental.core"/>
-      <plugin id="com.sogeti.rental.help"/>
       <plugin id="com.sogeti.rental.rcp"/>
       <plugin id="com.sogeti.rental.ui"/>
       <plugin id="com.sogeti.rental.ui.cmd"/>
@@ -64,11 +60,5 @@
       <plugin id="org.eclipse.ui.workbench"/>
    </plugins>
 
-   <configurations>
-      <plugin id="com.sogeti.rental.adapters" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
-      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
-      <plugin id="org.eclipse.osgi" autoStart="true" startLevel="-1" />
-   </configurations>
 
 </product>
