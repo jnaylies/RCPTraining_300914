@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.sogeti.rental.feature_1.0.0.201410031511.jar" id="com.sogeti.rental.feature" version="1.0.0.201410031511">
+      <category name="com.sogeti.rental"/>
+   </feature>
+   <category-def name="com.sogeti.rental" label="Rental"/>
+</site>
